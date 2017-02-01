@@ -1,5 +1,7 @@
-# Build Linux kernel
+# Build under Linux
 ```
+git clone https://github.com/opencomputeproject/cbw-openwrt-kernel
+cd cbw-openwrt-kernel
 docker build -t ocp .
 docker run -v `pwd`/opt:/opt -it ocp
 ```
@@ -13,13 +15,15 @@ squashfs.ubi
 
 folder 'linux-stable' is a full Linux kernel tree used for compilation.
 
-#building under OSx
+# Build under OSx
 
 default Mac filesystem is case-insensitive and not compatible with OpenWRT build system.
 So, we need to make case-sensitive volume and build inside this volume. Here is a commands
 to do this:
 
 ```
+git clone https://github.com/opencomputeproject/cbw-openwrt-kernel
+cd cbw-openwrt-kernel
 docker build -t ocp .
 hdiutil create -size 20g -fs "Case-sensitive HFS+" -volname OpenWrt OpenWrt.dmg
 hdiutil attach OpenWrt.dmg
