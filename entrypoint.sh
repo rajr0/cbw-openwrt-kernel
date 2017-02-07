@@ -12,7 +12,9 @@ cd /opt
 if [ ! -d "openwrt" ]; then
 	git clone -b ocp --depth=1 https://github.com/aospan/openwrt.git && cd openwrt
 	cp /openwrt.config ./.config
-	./scripts/feeds update -a && ./scripts/feeds install -a
+	./scripts/feeds update -a && \
+		./scripts/feeds install luci && \
+		./scripts/feeds install screen
 else
 	cd openwrt && git pull --rebase
 fi
