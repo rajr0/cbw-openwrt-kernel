@@ -1,38 +1,28 @@
 #!/bin/bash
+# Build OpenWRT inside docker container
+# Resulting file /opt/openwrt-bcm53xx-edgecore-ecw7220-l-squashfs.trx
+# (c) Abylay Ospan, Joker Systems Inc., 2017
+# License: GPLv2
+
 set -e
 
 cd /opt
 
 # Build OpenWRT
 if [ ! -d "openwrt" ]; then
-	git clone --depth=1 https://github.com/aospan/openwrt.git
-fi
-
-cd openwrt
-
-if [ ! -f ".config" ]; then
+	git clone -b ocp --depth=1 https://github.com/aospan/openwrt.git && cd openwrt
 	cp /openwrt.config ./.config
-	FORCE=1 make defconfig
+	./scripts/feeds update -a && ./scripts/feeds install -a
+else
+	cd openwrt && git pull --rebase
 fi
 
-FORCE_UNSAFE_CONFIGURE=1 FORCE=1 make -j"$(nproc)"
-PATH=$PATH:./staging_dir/host/bin/ ./scripts/ubinize-image.sh ./build_dir/target-arm_cortex-a9_musl-1.1.16_eabi/linux-bcm53xx/root.squashfs /opt/squashfs.ubi -p 128KiB -m 2048 -E 5
+export FORCE=1
+export FORCE_UNSAFE_CONFIGURE=1
 
-cd /opt
-# Build Linux kernel
-if [ ! -d "linux-stable" ]; then
-    git clone --depth=1 -b ocp-linux-4.9.y https://github.com/aospan/linux-stable.git
-fi
+CONFDEFAULT=y make -j1 V=s oldconfig
 
-cd linux-stable 
-
-if [ ! -f ".config" ]; then
-	make -j"$(nproc)" LOADADDR=0x82008000 ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- ecw7220l_defconfig
-fi
-
-time make -j"$(nproc)" LOADADDR=0x82008000 ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- uImage
-make -j"$(nproc)" LOADADDR=0x82008000 ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- arch/arm/boot/dts/
+make -j"$(nproc)"
 
 #copy result to /opt
-cp arch/arm/boot/uImage /opt/
-cp arch/arm/boot/dts/bcm4708-edgecore-ecw7220-l.dtb /opt/
+cp ./bin/bcm53xx/openwrt-bcm53xx-edgecore-ecw7220-l-squashfs.trx /opt/
