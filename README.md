@@ -31,6 +31,13 @@ docker run -v `pwd`/opt:/opt -it ocp
 
 #Flashing OpenWRT kernel+rootfs+ubifs to AP
 
+#Starting TFTP Server on OSX
+sudo cp openwrt-bcm53xx-edgecore-ecw7220-l-squashfs.trx /private/tftpboot/
+
+sudo launchctl load -F /System/Library/LaunchDaemons/tftp.plist
+
+sudo launchctl start com.apple.tftpd
+
 Copy binary file (openwrt-bcm53xx-edgecore-ecw7220-l-squashfs.trx) to TFTP server directory and boot AP to u-boot shell.
 Then issue following commands in u-boot shell (do not type 'u-boot> ' part, replace 192.168.1.121 to IP-address of your TFTP server):
 
@@ -40,6 +47,7 @@ u-boot> nand erase 0x00680000 0x2800000
 u-boot> nand write 0x82000000 0x680000 ${filesize}
 u-boot> run boot2
 ```
+
 this commands writes OpenWRT image to NAND flash and then boot AP.
 
 here is a console output if everything is ok:
