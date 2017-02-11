@@ -32,13 +32,19 @@ docker run -v `pwd`/opt:/opt -it ocp
 #Flashing OpenWRT kernel+rootfs+ubifs to AP
 
 #Starting TFTP Server on OSX
+
+```
 sudo cp openwrt-bcm53xx-edgecore-ecw7220-l-squashfs.trx /private/tftpboot/
-
 sudo launchctl load -F /System/Library/LaunchDaemons/tftp.plist
-
 sudo launchctl start com.apple.tftpd
+```
 
 Copy binary file (openwrt-bcm53xx-edgecore-ecw7220-l-squashfs.trx) to TFTP server directory and boot AP to u-boot shell.
+Set AP IP address to IP address of choice
+```
+u-boot> setenv ipaddr X.X.X.X /* where X.X.X.X is the IP you want to provide to your AP */
+u-boot> printenv  /* To check if got set right */
+```
 Then issue following commands in u-boot shell (do not type 'u-boot> ' part, replace 192.168.1.121 to IP-address of your TFTP server):
 
 ```
