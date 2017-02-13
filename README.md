@@ -1,4 +1,4 @@
-This is kernel is built for OCP whitebox enterprise class high performance white box Wi-Fi Access Points.<br />
+This kernel is built for OCP whitebox enterprise class high performance white box Wi-Fi Access Points.<br />
 H/W specifications are available here http://www.opencompute.org/wiki/Networking/SpecsAndDesigns <br />
 Highlights of H/W capabilities : <br />
 - Dual core ARM based Broadcom SoC (1.2 GHz core) <br />
