@@ -1,3 +1,12 @@
+This is kernel is built for OCP whitebox enterprise class high performance white box Wi-Fi Access Points.<br />
+H/W specifications are available here http://www.opencompute.org/wiki/Networking/SpecsAndDesigns <br />
+Highlights of H/W capabilities : <br />
+- Dual core ARM based Broadcom SoC (1.2 GHz core) <br />
+- 3x3 AC MIMO with beamforming <br />
+- dual band 2.4/5 ; 1 Gb/s WAN connection <br />
+<br />
+
+
 # Build under Linux
 ```
 git clone https://github.com/opencomputeproject/cbw-openwrt-kernel
