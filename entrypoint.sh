@@ -8,6 +8,15 @@ set -e
 
 cd /opt
 
+#setup git
+if [ ! -z "$GIT_EMAIL" ]; then
+	git config --global user.email "$GIT_EMAIL"
+fi
+
+if [ ! -z "$GIT_NAME" ]; then
+	git config --global user.name "$GIT_NAME"
+fi
+
 # Build OpenWRT
 if [ ! -d "openwrt" ]; then
 	git clone -b ocp --depth=1 https://github.com/aospan/openwrt.git && cd openwrt
