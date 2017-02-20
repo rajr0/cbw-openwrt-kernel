@@ -48,7 +48,9 @@ sudo launchctl load -F /System/Library/LaunchDaemons/tftp.plist
 sudo launchctl start com.apple.tftpd
 ```
 
-Copy binary file (openwrt-bcm53xx-edgecore-ecw7220-l-squashfs.trx) to TFTP server directory and boot AP to u-boot shell.
+Copy binary file (openwrt-bcm53xx-edgecore-ecw7220-l-squashfs.trx) to TFTP server directory and boot AP to u-boot shell.<br />
+If you power up the AP, you'd have 2-3 seconds to press any key on the AP console to break into u-boot
+
 Set AP IP address to IP address of choice
 ```
 u-boot> setenv ipaddr X.X.X.X /* where X.X.X.X is the IP you want to provide to your AP */
@@ -122,3 +124,5 @@ root@OpenWrt:/#
 
 (c) Abylay Ospan, Joker Systems Inc., 2017, License: GPLv2
 https://jokersys.com
+&
+Rajat Ghai (OCP - CBW)
