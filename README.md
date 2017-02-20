@@ -123,6 +123,6 @@ root@OpenWrt:/#
 ```
 
 (c) Abylay Ospan, Joker Systems Inc., 2017, License: GPLv2
-https://jokersys.com
-&
+https://jokersys.com <br />
+& <br />
 Rajat Ghai (OCP - CBW)
