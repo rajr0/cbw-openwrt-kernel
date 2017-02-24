@@ -6,6 +6,7 @@ Highlights of H/W capabilities : <br />
 - dual band 2.4/5 ; 1 Gb/s WAN connection <br />
 <br />
 
+'CBW Linux' should be considered "early alpha" status at this point for the H/W platforms listed above. Current efforts are focused primarily at increasing H/W compatibility coverage to other OCP CBW H/W and to add more usability/functionality, in order to move it into a more stable, beta status in near future.
 
 # Build under Linux
 ```
